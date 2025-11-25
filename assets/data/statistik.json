@@ -1,0 +1,19 @@
+{
+    "kesehatan_pemuda": {
+        "canvas": "chartKesehatanPemuda",
+        "label": "Data Kesehatan Pemuda Indonesia",
+        "tahun": ["2016", "2017", "2018", "2019", "2020", "2021"],
+
+        "angka_kesakitan": {
+            "label": "Angka Kesakitan Pemuda",
+            "satuan": "%",
+            "data": [8.54, 8.11, 7.68, 8.78, 8.52, 10.23]
+        },
+
+        "keluhan_kesehatan": {
+            "label": "Persentase Pemuda Yang Memiliki Keluhan Kesehatan",
+            "satuan": "%",
+            "data": [17.4, 18.53, 20.16, 21.43, 20.92, 21.24]
+        }
+    }
+}
