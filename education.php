@@ -36,7 +36,7 @@ if(!isset($_SESSION['login_user'])){
             <div class="audio-card fade-in">
                 <i class="fa-solid fa-headset audio-icon"></i>
                 <h3 class="audio-title">1. Mengenal Gejala Burnout</h3>
-                <p class="audio-duration">Durasi: 5 menit 12 detik</p>
+                <p class="audio-duration">Durasi: 5 menit 04 detik</p>
                 <audio controls class="audio-player">
                     <source src="assets/audio/burnout_gejala.mp3" type="audio/mpeg">
                     Browser Anda tidak mendukung elemen audio.
@@ -46,7 +46,7 @@ if(!isset($_SESSION['login_user'])){
             <div class="audio-card fade-in" style="animation-delay: 0.1s;">
                 <i class="fa-solid fa-headset audio-icon"></i>
                 <h3 class="audio-title">2. Rahasia Tidur Nyenyak 8 Jam</h3>
-                <p class="audio-duration">Durasi: 7 menit 45 detik</p>
+                <p class="audio-duration">Durasi: 4 menit 41 detik</p>
                 <audio controls class="audio-player">
                     <source src="assets/audio/tidur_nyenyak.mp3" type="audio/mpeg">
                     Browser Anda tidak mendukung elemen audio.
@@ -56,7 +56,7 @@ if(!isset($_SESSION['login_user'])){
             <div class="audio-card fade-in" style="animation-delay: 0.2s;">
                 <i class="fa-solid fa-headset audio-icon"></i>
                 <h3 class="audio-title">3. Pentingnya Vitamin D Harian</h3>
-                <p class="audio-duration">Durasi: 4 menit 30 detik</p>
+                <p class="audio-duration">Durasi: 3 menit 59 detik</p>
                 <audio controls class="audio-player">
                     <source src="assets/audio/vitamin_d.mp3" type="audio/mpeg">
                     Browser Anda tidak mendukung elemen audio.
@@ -65,8 +65,8 @@ if(!isset($_SESSION['login_user'])){
 
             <div class="audio-card fade-in" style="animation-delay: 0.3s;">
                 <i class="fa-solid fa-headset audio-icon"></i>
-                <h3 class="audio-title">4. Tips Mengelola Stres Kerja</h3>
-                <p class="audio-duration">Durasi: 6 menit 05 detik</p>
+                <h3 class="audio-title">4. Tips Mengelola Stres</h3>
+                <p class="audio-duration">Durasi: 2 menit 56 detik</p>
                 <audio controls class="audio-player">
                     <source src="assets/audio/stres_kerja.mp3" type="audio/mpeg">
                     Browser Anda tidak mendukung elemen audio.
