@@ -58,7 +58,7 @@
                     <i class="fa-solid fa-heart-pulse"></i>
                     <h3>Health Check-In</h3>
                     <p>Catat kondisi kesehatan Anda setiap hari dengan mudah dan dapatkan analisis yang akurat.</p>
-                    <a href="#" class="btn btn-blue btn-small">Lihat Selengkapnya</a>
+                    <a href="dailycheck.php" class="btn btn-blue btn-small">Lihat Selengkapnya</a>
                 </div>
 
                 <div class="feature-card">
