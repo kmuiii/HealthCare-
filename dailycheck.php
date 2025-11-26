@@ -1,3 +1,79 @@
+<?php
+session_start();
+include 'koneksi.php';
+
+// 1. Cek Login (Keamanan)
+if (!isset($_SESSION['login_user'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];
+$message = "";
+$msg_type = ""; 
+
+// 2. Proses Form Submit (Menyimpan Data ke Database)
+if (isset($_POST['save_checkin'])) {
+    $water = (int) $_POST['water'];
+    $sleep = (float) $_POST['sleep']; 
+    $exercise = $_POST['exercise'] === 'yes' ? 1 : 0;
+    $mood = (int) $_POST['mood'];
+    $today = date('Y-m-d');
+
+    // Cek apakah user sudah check-in hari ini?
+    $check_query = "SELECT id FROM health_checkins WHERE user_id = '$user_id' AND checkin_date = '$today'";
+    $check_result = mysqli_query($koneksi, $check_query);
+
+    if (mysqli_num_rows($check_result) > 0) {
+        // UPDATE (Timpa data lama)
+        $query = "UPDATE health_checkins SET 
+                  water = '$water', 
+                  sleep = '$sleep', 
+                  exercise = '$exercise', 
+                  mood = '$mood' 
+                  WHERE user_id = '$user_id' AND checkin_date = '$today'";
+        $msg_text = "Data hari ini berhasil diperbarui!";
+    } else {
+        // INSERT (Data baru)
+        $query = "INSERT INTO health_checkins (user_id, water, sleep, exercise, mood, checkin_date) 
+                  VALUES ('$user_id', '$water', '$sleep', '$exercise', '$mood', '$today')";
+        $msg_text = "Check-in berhasil disimpan!";
+    }
+
+    if (mysqli_query($koneksi, $query)) {
+        $message = $msg_text;
+        $msg_type = "green";
+    } else {
+        $message = "Terjadi kesalahan: " . mysqli_error($koneksi);
+        $msg_type = "red";
+    }
+}
+
+// 3. Ambil Data untuk Grafik (7 Hari Terakhir dari Database)
+$data_labels = [];
+$data_water = [];
+$data_sleep = [];
+$data_mood = [];
+
+$query_chart = "SELECT * FROM health_checkins WHERE user_id = '$user_id' ORDER BY checkin_date ASC LIMIT 7";
+$result_chart = mysqli_query($koneksi, $query_chart);
+
+while ($row = mysqli_fetch_assoc($result_chart)) {
+    // Format tanggal: 26/11
+    $data_labels[] = date('d/m', strtotime($row['checkin_date']));
+    $data_water[] = $row['water'];
+    $data_sleep[] = $row['sleep'];
+    $data_mood[] = $row['mood'];
+}
+
+// Kirim data ke JS
+$json_labels = json_encode($data_labels);
+$json_water = json_encode($data_water);
+$json_sleep = json_encode($data_sleep);
+$json_mood = json_encode($data_mood);
+
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
