@@ -28,8 +28,8 @@
             <button class="nav-toggle" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#beranda">Beranda</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#faskes">Faskes</a></li>
+                <li><a href="education.php">Education</a></li>
+                <li><a href="faskes.php">Faskes</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </div>

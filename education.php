@@ -1,3 +1,15 @@
+<?php
+session_start();
+include 'koneksi.php';
+
+if(!isset($_SESSION['login_user'])){
+    header("Location: login.php");
+    exit;
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
