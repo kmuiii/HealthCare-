@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Health Check-In</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f4ff;
+            margin: 0;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 0.9s ease forwards;
+        }
+
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: white;
+            color: #4e73df;
+            padding: 18px 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .back-btn {
+            background: #4e73df;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            transition: 0.2s;
+        }
+
+        .back-btn:hover { background: #2e59d9; }
+
+        .checkin-form {
+            background: #ffffff;
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .checkin-form h2 {
+            margin-bottom: 20px;
+            color: #4e73df;
+        }
+
+        .checkin-form label {
+            font-weight: 500;
+        }
+
+        .checkin-form input,
+        .checkin-form select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+            border: 1px solid #cbd1e2;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #4e73df;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        button:hover { background: #2e59d9; }
+
+        #status {
+            margin-top: 10px;
+            font-weight: 500;
+            color: green;
+        }
+
+        .chart-section {
+            margin-top: 35px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .chart-section h2 {
+            margin-bottom: 15px;
+            color: #4e73df;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn">Kembali</a>
+        <h1 style="margin: 0; font-size: 22px;">Daily Health Check-In</h1>
+    </header>
+
+    <section class="checkin-form">
+        <h2>Catatan Kesehatan Hari Ini</h2>
+
+        <label>Jumlah air yang diminum (gelas)</label>
+        <input type="number" id="water" min="0">
+
+        <label>Durasi tidur (jam)</label>
+        <input type="number" id="sleep" min="0">
+
+        <label>Sudah berolahraga?</label>
+        <select id="exercise">
+            <option value="yes">Ya</option>
+            <option value="no">Tidak</option>
+        </select>
+
+        <label>Tingkat stres/mood hari ini (1–5)</label>
+        <input type="range" id="mood" min="1" max="5" value="3">
+
+        <button onclick="saveCheckIn()">Simpan Check-In</button>
+
+        <p id="status"></p>
+    </section>
+
+    <section class="chart-section">
+        <h2>Grafik Perkembangan Mingguan</h2>
+        <canvas id="healthChart"></canvas>
+    </section>
+
+    <script>
+        let healthData = JSON.parse(localStorage.getItem("healthData")) || [];
+
+        function saveCheckIn() {
+            const water = document.getElementById("water").value;
+            const sleep = document.getElementById("sleep").value;
+            const exercise = document.getElementById("exercise").value;
+            const mood = document.getElementById("mood").value;
+
+            if (!water || !sleep) {
+                document.getElementById("status").innerText = "Isi semua data terlebih dahulu!";
+                return;
+            }
+
+            const today = new Date().toLocaleDateString("id-ID");
+
+            const entry = {
+                date: today,
+                water: Number(water),
+                sleep: Number(sleep),
+                exercise: exercise === "yes" ? 1 : 0,
+                mood: Number(mood)
+            };
+
+            // -----------------------------
+            // FITUR BARU: HANYA 1 CHECK-IN / HARI
+            // -----------------------------
+            const existingIndex = healthData.findIndex(item => item.date === today);
+
+            if (existingIndex !== -1) {
+                // Update data hari ini
+                healthData[existingIndex] = entry;
+            } else {
+                // Tambahkan data baru
+                healthData.push(entry);
+            }
+
+            localStorage.setItem("healthData", JSON.stringify(healthData));
+            document.getElementById("status").innerText = "Data berhasil disimpan!";
+            updateChart();
+        }
+
+        let chart;
+
+        function updateChart() {
+            const ctx = document.getElementById("healthChart");
+
+            const labels = healthData.map(item => item.date);
+            const waterData = healthData.map(item => item.water);
+            const sleepData = healthData.map(item => item.sleep);
+            const moodData = healthData.map(item => item.mood);
+
+            if (chart) chart.destroy();
+
+            chart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: "Air (gelas)", data: waterData, borderWidth: 2 },
+                        { label: "Tidur (jam)", data: sleepData, borderWidth: 2 },
+                        { label: "Mood (1-5)", data: moodData, borderWidth: 2 }
+                    ]
+                }
+            });
+        }
+
+        updateChart();
+    </script>
+
+</body>
+</html>
