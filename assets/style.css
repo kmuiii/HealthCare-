@@ -645,7 +645,97 @@
 
 
     /* ===== Halaman Education ===== */
+    .education-body {
+        background: var(--bg-light);
+        padding: 20px;
+    }
 
+    .education-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: var(--white);
+        color: var(--primary-blue);
+        padding: 18px 25px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        max-width: 1200px;
+        margin: 0 auto 30px auto;
+    }
+
+    .education-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .section-subtitle {
+        font-size: 24px;
+        color: var(--text-dark);
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .audio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .audio-card {
+        background: var(--white);
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        transition: all 0.3s;
+        border-top: 5px solid var(--primary-green);
+    }
+
+    .audio-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .audio-icon {
+        font-size: 36px;
+        color: var(--primary-blue);
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .audio-title {
+        font-size: 20px;
+        color: var(--text-dark);
+        margin-bottom: 5px;
+    }
+
+    .audio-duration {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .audio-player {
+        width: 100%;
+        margin-top: 10px;
+        background: var(--bg-light);
+        border-radius: 8px;
+        padding: 5px;
+    }
+
+    @media (max-width: 600px) {
+        .education-header {
+            margin: 0 auto 20px auto;
+        }
+        .section-subtitle {
+            font-size: 20px;
+        }
+        .audio-card {
+            padding: 20px;
+        }
+    }  
 
     /* ===== Halaman Faskes ===== */
 
