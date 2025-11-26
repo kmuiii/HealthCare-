@@ -2,7 +2,7 @@
 session_start();
 include 'koneksi.php';
 
-// 1. Cek Login
+//  Cek Login
 if (!isset($_SESSION['login_user'])) {
     header('Location: login.php');
     exit;
@@ -12,7 +12,7 @@ $user_id = $_SESSION['user_id'];
 $message = "";
 $msg_type = ""; 
 
-// 2. Proses Simpan Data ke Database
+//  Simpan Data ke Database
 if (isset($_POST['save_checkin'])) {
     $water = (int) $_POST['water'];
     $sleep = (float) $_POST['sleep']; 
@@ -49,7 +49,7 @@ if (isset($_POST['save_checkin'])) {
     }
 }
 
-// 3. Ambil Data Untuk Grafik (7 Hari Terakhir)
+//Ambil Data Untuk Grafik (7 Hari Terakhir)
 $data_labels = [];
 $data_water = [];
 $data_sleep = [];
@@ -59,7 +59,7 @@ $query_chart = "SELECT * FROM health_checkins WHERE user_id = '$user_id' ORDER B
 $result_chart = mysqli_query($koneksi, $query_chart);
 
 while ($row = mysqli_fetch_assoc($result_chart)) {
-    // Format tanggal jadi tgl/bln (contoh: 25/11)
+    // Format tanggal jadi tgl/bln 
     $data_labels[] = date('d/m', strtotime($row['checkin_date']));
     $data_water[] = $row['water'];
     $data_sleep[] = $row['sleep'];
@@ -90,6 +90,12 @@ $json_mood = json_encode($data_mood);
     <header class="healthcheck-header">
         <a href="index.php" class="back-btn">Kembali</a>
         <h1 style="margin: 0; font-size: 22px;">Daily Health Check-In</h1>
+
+        <ul class="nav-menu" id="navMenu" style="text-align: right; margin-left: auto;">
+                
+                <li><a href="faskes.php">Faskes</a></li>
+                <li><a href="education.php">Education</a></li>
+        </ul>
     </header>
 
     <section class="checkin-form">

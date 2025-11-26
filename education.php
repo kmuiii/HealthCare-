@@ -23,11 +23,18 @@ if(!isset($_SESSION['login_user'])){
 
 <body class="education-body fade-in"> 
 
-    
+
 
     <header class="education-header">
+        
         <a href="index.php" class="back-btn">Kembali</a> 
         <h1 style="margin: 0; font-size: 22px;">🎧 Audio Edukasi Kesehatan</h1>
+        <ul class="nav-menu" id="navMenu" style="text-align: right; margin-left: auto;">
+                
+                <li><a href="dailycheck.php">DailyCheck</a></li>
+                <li><a href="faskes.php">Faskes</a></li>
+                
+        </ul>
     </header>
 
     <section class="education-content">

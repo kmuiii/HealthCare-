@@ -41,7 +41,7 @@
             <h1>Website Informasi Edukasi Kesehatan</h1>
             <p>Edukasi, statistik, dan fasilitas kesehatan dalam satu tempat.</p>
             <div class="hero-buttons">
-                <a href="#" class="btn btn-green">Mulai Sekarang</a>
+                <a href="dailycheck.php" class="btn btn-green">Mulai Sekarang</a>
                 <a href="#features" class="btn btn-blue">Pelajari Fitur</a>
             </div>
         </div>
@@ -65,14 +65,14 @@
                     <i class="fa-solid fa-headphones"></i>
                     <h3>Audio Edukasi</h3>
                     <p>Dengarkan konten edukasi kesehatan dalam format audio yang praktis dan informatif.</p>
-                    <a href="#" class="btn btn-blue btn-small">Lihat Selengkapnya</a>
+                    <a href="education.php" class="btn btn-blue btn-small">Lihat Selengkapnya</a>
                 </div>
 
                 <div class="feature-card">
                     <i class="fa-solid fa-hospital"></i>
                     <h3>Direktori Fasilitas Kesehatan</h3>
                     <p>Temukan rumah sakit, klinik, dan apotek terdekat dengan informasi lengkap dan terpercaya.</p>
-                    <a href="#" class="btn btn-blue btn-small">Lihat Selengkapnya</a>
+                    <a href="faskes.php" class="btn btn-blue btn-small">Lihat Selengkapnya</a>
                 </div>
             </div>
         </div>
