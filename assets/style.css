@@ -538,6 +538,110 @@
     }
 
     /* ===== Halaman HealthCheck ===== */
+    .healthcheck-body {
+        background: #f0f4ff;
+        padding: 20px;
+    }
+
+    @keyframes fadeIn { 
+        to { 
+            opacity: 1; 
+        } 
+    }
+
+    .healthcheck-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: var(--white);
+        color: var(--primary-blue);
+        padding: 18px 25px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .back-btn {
+        background: var(--primary-blue);
+        color: var(--white);
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        transition: 0.2s;
+    }
+
+    .back-btn:hover { 
+        background: #2e59d9; 
+    }
+
+    .checkin-form {
+        background: var(--white);
+        margin-top: 25px;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .checkin-form h2 {
+        margin-bottom: 20px;
+        color: var(--primary-blue);
+    }
+
+    .checkin-form label {
+        font-weight: 500;
+    }
+
+    .checkin-form input:not([type="submit"]),
+    .checkin-form select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        margin-bottom: 18px;
+        border-radius: 6px;
+        border: 1px solid #cbd1e2;
+        font-size: 15px;
+    }
+
+    .checkin-form button {
+        width: 100%;
+        padding: 15px;
+        background: var(--primary-blue);
+        color: var(--white);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .checkin-form button:hover { 
+        background: #2e59d9; 
+    }
+
+    #status {
+        margin-top: 10px;
+        font-weight: 500;
+        color: var(--primary-green);
+    }
+    .status-error {
+        color: #D32F2F;
+    }
+
+    .chart-section {
+        margin-top: 35px;
+        background: var(--white);
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .chart-section h2 {
+        margin-bottom: 15px;
+        color: var(--primary-blue);
+    }
 
 
     /* ===== Halaman Education ===== */
