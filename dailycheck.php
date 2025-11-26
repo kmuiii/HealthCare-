@@ -2,7 +2,6 @@
 session_start();
 include 'koneksi.php';
 
-// 1. Cek Login (Keamanan)
 if (!isset($_SESSION['login_user'])) {
     header('Location: login.php');
     exit;
@@ -12,7 +11,6 @@ $user_id = $_SESSION['user_id'];
 $message = "";
 $msg_type = ""; 
 
-// 2. Proses Form Submit (Menyimpan Data ke Database)
 if (isset($_POST['save_checkin'])) {
     $water = (int) $_POST['water'];
     $sleep = (float) $_POST['sleep']; 
@@ -20,12 +18,10 @@ if (isset($_POST['save_checkin'])) {
     $mood = (int) $_POST['mood'];
     $today = date('Y-m-d');
 
-    // Cek apakah user sudah check-in hari ini?
     $check_query = "SELECT id FROM health_checkins WHERE user_id = '$user_id' AND checkin_date = '$today'";
     $check_result = mysqli_query($koneksi, $check_query);
 
     if (mysqli_num_rows($check_result) > 0) {
-        // UPDATE (Timpa data lama)
         $query = "UPDATE health_checkins SET 
                   water = '$water', 
                   sleep = '$sleep', 
@@ -34,7 +30,6 @@ if (isset($_POST['save_checkin'])) {
                   WHERE user_id = '$user_id' AND checkin_date = '$today'";
         $msg_text = "Data hari ini berhasil diperbarui!";
     } else {
-        // INSERT (Data baru)
         $query = "INSERT INTO health_checkins (user_id, water, sleep, exercise, mood, checkin_date) 
                   VALUES ('$user_id', '$water', '$sleep', '$exercise', '$mood', '$today')";
         $msg_text = "Check-in berhasil disimpan!";
@@ -49,7 +44,6 @@ if (isset($_POST['save_checkin'])) {
     }
 }
 
-// 3. Ambil Data untuk Grafik (7 Hari Terakhir dari Database)
 $data_labels = [];
 $data_water = [];
 $data_sleep = [];
@@ -59,14 +53,12 @@ $query_chart = "SELECT * FROM health_checkins WHERE user_id = '$user_id' ORDER B
 $result_chart = mysqli_query($koneksi, $query_chart);
 
 while ($row = mysqli_fetch_assoc($result_chart)) {
-    // Format tanggal: 26/11
     $data_labels[] = date('d/m', strtotime($row['checkin_date']));
     $data_water[] = $row['water'];
     $data_sleep[] = $row['sleep'];
     $data_mood[] = $row['mood'];
 }
 
-// Kirim data ke JS
 $json_labels = json_encode($data_labels);
 $json_water = json_encode($data_water);
 $json_sleep = json_encode($data_sleep);

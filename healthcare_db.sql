@@ -15,7 +15,7 @@ CREATE TABLE health_checkins (
     user_id INT(11) NOT NULL,
     water INT(11),
     sleep INT(11),
-    exercise TINYINT(1), -- 1 untuk Ya, 0 untuk Tidak
+    exercise TINYINT(1),
     mood INT(11),
     checkin_date DATE NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
