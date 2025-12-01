@@ -49,20 +49,25 @@ if (isset($_POST['submit_rating'])) {
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="education-body fade-in"> 
 
-    <header class="education-header">
-        <a href="index.php" class="back-btn">Kembali</a>
-        <div class="header-title">
-            <i class="fa-solid fa-hospital"></i>
-            <h1>Direktori Fasilitas Kesehatan</h1>
-        </div>
-
-        <ul class="nav-menu" id="navMenu" style="text-align: right; margin-left: auto;">
-                
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.php" class="nav-logo">HealthCare+</a>
+            <button class="nav-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.php">Beranda</a></li>
                 <li><a href="dailycheck.php">DailyCheck</a></li>
                 <li><a href="education.php">Education</a></li>
-        </ul>
+                <li><a href="faskes.php">Faskes</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="menu-header">
+        <a href="index.php" class="back-btn">Kembali</a>
+        <h1 style="margin: 0; font-size: 22px;">Direktori Fasilitas Kesehatan</h1>
     </header>
 
     <section class="faskes-grid">
@@ -145,5 +150,12 @@ if (isset($_POST['submit_rating'])) {
         ?>
     </section>
 
+    <footer class="footer">
+        <div class="footer-container">
+            <h3>HealthCare+</h3>
+            <p>Platform informasi kesehatan terpercaya untuk Indonesia yang lebih sehat</p>
+            <p class="copyright">&copy; 2025 HealthCare+. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

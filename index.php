@@ -27,7 +27,8 @@
             <a href="index.php" class="nav-logo">HealthCare+</a>
             <button class="nav-toggle" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="index.php">Beranda</a></li>
+                <li><a href="dailycheck.php">DailyCheck</a></li>
                 <li><a href="education.php">Education</a></li>
                 <li><a href="faskes.php">Faskes</a></li>
                 <li><a href="logout.php">Logout</a></li>
@@ -91,7 +92,7 @@
         <div class="footer-container">
             <h3>HealthCare+</h3>
             <p>Platform informasi kesehatan terpercaya untuk Indonesia yang lebih sehat</p>
-            <p class="copyright">&copy; 2024 HealthCare+. All rights reserved.</p>
+            <p class="copyright">&copy; 2025 HealthCare+. All rights reserved.</p>
         </div>
     </footer>
 

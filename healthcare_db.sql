@@ -1,6 +1,6 @@
 Create database healthcare_db;
 
-use database healthcare_db;
+use healthcare_db;
 
 CREATE TABLE users (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
@@ -18,7 +18,7 @@ CREATE TABLE health_checkins (
     exercise TINYINT(1),
     mood INT(11),
     checkin_date DATE NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFEREN   CES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE faskes (
@@ -27,8 +27,7 @@ CREATE TABLE faskes (
     tipe ENUM('Rumah Sakit', 'Klinik', 'Puskesmas', 'Apotek') NOT NULL,
     alamat TEXT NOT NULL,
     kecamatan VARCHAR(50) NOT NULL,
-    kontak VARCHAR(20),
-    
+    kontak VARCHAR(20)
 );
 
 CREATE TABLE faskes_ratings (

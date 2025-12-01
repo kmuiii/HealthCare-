@@ -24,21 +24,21 @@ if (isset($_POST['save_checkin'])) {
     $check_query = "SELECT id FROM health_checkins WHERE user_id = '$user_id' AND checkin_date = '$today'";
     $check_result = mysqli_query($koneksi, $check_query);
 
-    if (mysqli_num_rows($check_result) > 0) {
-        // Jika sudah, Lakukan UPDATE
-        $query = "UPDATE health_checkins SET 
-                  water = '$water', 
-                  sleep = '$sleep', 
-                  exercise = '$exercise', 
-                  mood = '$mood' 
-                  WHERE user_id = '$user_id' AND checkin_date = '$today'";
-        $msg_text = "Data hari ini berhasil diperbarui!";
-    } else {
+    // if (mysqli_num_rows($check_result) > 0) {
+    //     // Jika sudah, Lakukan UPDATE
+    //     $query = "UPDATE health_checkins SET 
+    //               water = '$water', 
+    //               sleep = '$sleep', 
+    //               exercise = '$exercise', 
+    //               mood = '$mood' 
+    //               WHERE user_id = '$user_id' AND checkin_date = '$today'";
+    //     $msg_text = "Data hari ini berhasil diperbarui!";
+    // } else {
         // kalo belum, Lakukan INSERT
         $query = "INSERT INTO health_checkins (user_id, water, sleep, exercise, mood, checkin_date) 
                   VALUES ('$user_id', '$water', '$sleep', '$exercise', '$mood', '$today')";
         $msg_text = "Check-in berhasil disimpan!";
-    }
+    //}
 
     if (mysqli_query($koneksi, $query)) {
         $message = $msg_text;
@@ -85,20 +85,28 @@ $json_mood = json_encode($data_mood);
     
 </head>
 
-<body class="healthcheck-body fade-in">
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.php" class="nav-logo">HealthCare+</a>
+            <button class="nav-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.php">Beranda</a></li>
+                <li><a href="dailycheck.php">DailyCheck</a></li>
+                <li><a href="education.php">Education</a></li>
+                <li><a href="faskes.php">Faskes</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <header class="healthcheck-header">
+    <header class="menu-header">
         <a href="index.php" class="back-btn">Kembali</a>
         <h1 style="margin: 0; font-size: 22px;">Daily Health Check-In</h1>
-
-        <ul class="nav-menu" id="navMenu" style="text-align: right; margin-left: auto;">
-                
-                <li><a href="faskes.php">Faskes</a></li>
-                <li><a href="education.php">Education</a></li>
-        </ul>
     </header>
 
     <section class="checkin-form">
+
         <h2>Catatan Kesehatan Hari Ini</h2>
 
         <?php if ($message): ?>
@@ -138,6 +146,8 @@ $json_mood = json_encode($data_mood);
             <canvas id="healthChart"></canvas>
         </div>
     </section>
+
+    
 
     <script>
         // Mengambil data JSON dari PHP ke Variabel Javascript
@@ -197,5 +207,12 @@ $json_mood = json_encode($data_mood);
         });
     </script>
 
+    <footer class="footer">
+        <div class="footer-container">
+            <h3>HealthCare+</h3>
+            <p>Platform informasi kesehatan terpercaya untuk Indonesia yang lebih sehat</p>
+            <p class="copyright">&copy; 2025 HealthCare+. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

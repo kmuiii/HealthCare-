@@ -21,27 +21,29 @@ if(!isset($_SESSION['login_user'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
 </head>
 
-<body class="education-body fade-in"> 
-
-
-
-    <header class="education-header">
-        
-        <a href="index.php" class="back-btn">Kembali</a> 
-        <h1 style="margin: 0; font-size: 22px;">🎧 Audio Edukasi Kesehatan</h1>
-        <ul class="nav-menu" id="navMenu" style="text-align: right; margin-left: auto;">
-                
+<body> 
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.php" class="nav-logo">HealthCare+</a>
+            <button class="nav-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.php">Beranda</a></li>
                 <li><a href="dailycheck.php">DailyCheck</a></li>
+                <li><a href="education.php">Education</a></li>
                 <li><a href="faskes.php">Faskes</a></li>
-                
-        </ul>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header class="menu-header">
+        <a href="index.php" class="back-btn">Kembali</a> 
+        <h1 style="margin: 0; font-size: 22px;">Audio Edukasi Kesehatan</h1>
     </header>
 
     <section class="education-content">
         <h2 class="section-subtitle">Dengarkan, Belajar, dan Tingkatkan Kesehatan Anda</h2>
-
         <div class="audio-grid">
-            
             <div class="audio-card fade-in">
                 <i class="fa-solid fa-headset audio-icon"></i>
                 <h3 class="audio-title">1. Mengenal Gejala Burnout</h3>
@@ -84,6 +86,14 @@ if(!isset($_SESSION['login_user'])){
 
         </div>
     </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <h3>HealthCare+</h3>
+            <p>Platform informasi kesehatan terpercaya untuk Indonesia yang lebih sehat</p>
+            <p class="copyright">&copy; 2025 HealthCare+. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
