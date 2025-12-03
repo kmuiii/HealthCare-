@@ -46,7 +46,7 @@ if (!$faskes) {
         </div>
 
         <div class="edit-card">
-            <form action="update_faskes.php" method="POST">
+            <form action="update-faskes.php" method="POST">
 
                 <input type="hidden" name="id" value="<?php echo $faskes['id']; ?>">
 

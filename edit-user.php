@@ -47,7 +47,7 @@ if (!$user) {
         </div>
 
         <div class="edit-card">
-            <form action="update_user.php" method="POST">
+            <form action="update-user.php" method="POST">
 
                 <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
 
