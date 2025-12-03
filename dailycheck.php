@@ -24,21 +24,21 @@ if (isset($_POST['save_checkin'])) {
     $check_query = "SELECT id FROM health_checkins WHERE user_id = '$user_id' AND checkin_date = '$today'";
     $check_result = mysqli_query($koneksi, $check_query);
 
-    // if (mysqli_num_rows($check_result) > 0) {
-    //     // Jika sudah, Lakukan UPDATE
-    //     $query = "UPDATE health_checkins SET 
-    //               water = '$water', 
-    //               sleep = '$sleep', 
-    //               exercise = '$exercise', 
-    //               mood = '$mood' 
-    //               WHERE user_id = '$user_id' AND checkin_date = '$today'";
-    //     $msg_text = "Data hari ini berhasil diperbarui!";
-    // } else {
+    if (mysqli_num_rows($check_result) > 0) {
+       // Jika sudah, Lakukan UPDATE
+        $query = "UPDATE health_checkins SET 
+                   water = '$water', 
+                   sleep = '$sleep', 
+                   exercise = '$exercise', 
+                   mood = '$mood' 
+                   WHERE user_id = '$user_id' AND checkin_date = '$today'";
+         $msg_text = "Data hari ini berhasil diperbarui!";
+    } else {
         // kalo belum, Lakukan INSERT
         $query = "INSERT INTO health_checkins (user_id, water, sleep, exercise, mood, checkin_date) 
                   VALUES ('$user_id', '$water', '$sleep', '$exercise', '$mood', '$today')";
         $msg_text = "Check-in berhasil disimpan!";
-    //}
+    }
 
     if (mysqli_query($koneksi, $query)) {
         $message = $msg_text;

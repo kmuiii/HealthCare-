@@ -3,7 +3,13 @@
     include 'koneksi.php';
 
     if(isset($_SESSION['login_user'])){
-        header('Location: index.php');
+        if ($_SESSION['role'] === 'admin') {
+            header('Location: admin-dashboard.php');
+            
+        } else {
+            header('Location: index.php');
+        }
+       
         exit();
     }
   
@@ -15,23 +21,28 @@
 
         $query = "SELECT * FROM users WHERE email = '$email'";
         $result = mysqli_query($koneksi, $query);
-
+        
         if(mysqli_num_rows($result) === 1){
             $row = mysqli_fetch_assoc($result);
 
-            if(password_verify($password, $row['password'])) {
+            if(password_verify($password, $row['password'])){
 
                 $_SESSION['login_user'] = true;
                 $_SESSION['user_id'] = $row['id'];
                 $_SESSION['fullname'] = $row['username'];
-            
-            header("location: index.php");
-            exit;
 
+                if ($email === 'admin@gmail.com') {
+                    $_SESSION['role'] = 'admin';
+                    header("location: admin-dashboard.php");
+                } else {
+                    $_SESSION['role'] = 'user';
+                    header("location: index.php");
+                }
+                exit;
             } else{
                 $error_msg = "Password Salah!";
             }
-            
+
         } else {
             $error_msg = "Email tidak ditemukan!";
         }
@@ -61,7 +72,7 @@
             <?php endif; ?>
 
             
-            <form method="POST" action="login.php">
+            <form method="POST" action="">
                 
                 
                 <div class="form-group">
