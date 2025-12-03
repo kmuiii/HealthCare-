@@ -757,7 +757,7 @@ body {
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto 50px auto;
-    padding: 0 20px;
+    padding: 20px 20px;
 }
 
 .faskes-card {
@@ -768,6 +768,7 @@ body {
     transition: 0.3s;
     border-top: 5px solid var(--primary-blue);
     position: relative;
+    padding: 20px;
 }
 
 .faskes-card:hover {
