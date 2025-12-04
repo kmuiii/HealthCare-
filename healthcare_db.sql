@@ -10,6 +10,11 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE users ADD COLUMN role ENUM('admin', 'user') DEFAULT 'user';
+
+--for change user role to admin
+UPDATE users SET role = 'admin' WHERE email = 'admin@gmail.com'
+
 CREATE TABLE health_checkins (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     user_id INT(11) NOT NULL,
