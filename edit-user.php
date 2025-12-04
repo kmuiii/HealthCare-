@@ -7,6 +7,11 @@ if (!isset($_GET['id'])) {
     exit;
 }
 
+if (!isset($_SESSION['login_user']) || $_SESSION['role'] !== 'admin') {
+    header("Location: index.php");
+    exit;
+}
+
 $id = intval($_GET['id']);
 
 $query = "SELECT * FROM users WHERE id = $id";

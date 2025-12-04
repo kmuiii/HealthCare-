@@ -2,6 +2,11 @@
 session_start();
 include 'koneksi.php';
 
+if (!isset($_SESSION['login_user']) || $_SESSION['role'] !== 'admin') {
+    header("Location: index.php");
+    exit;
+}
+
 if (isset($_GET['delete_user'])) {
     $user_id = $_GET['delete_user'];
     $delete_query = "DELETE FROM users WHERE id = '$user_id'";

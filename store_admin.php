@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $confirm = $_POST['password_confirm'];
     $role = 'admin'; // Paksa role jadi admin
 
+
+
     if ($password !== $confirm) {
         echo "<script>alert('Konfirmasi password tidak cocok!'); window.history.back();</script>";
         exit;
@@ -28,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
 
-    // Pastikan tabel users sudah ada kolom 'role' ya!
+    
     $query = "INSERT INTO users (username, email, password, role) 
               VALUES ('$username', '$email', '$hashed_pass', '$role')";
 

@@ -1,6 +1,12 @@
 <?php
 session_start();
 include 'koneksi.php';
+
+if (!isset($_SESSION['login_user']) || $_SESSION['role'] !== 'admin') {
+    header("Location: index.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
